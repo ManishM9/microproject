@@ -28,12 +28,26 @@ conn.on('open', () => {
 });
 
 
-var table
+var table = new mongoose.Schema({
+	tableno: Number,
+	item: Number,
+	itemName: String,
+});
+
+var Table1 = mongoose.model("Table1", table);
+
+var Table2 = mongoose.model("Table2", table);
 
 
 
 app.get("/", (req, res) => {
 	res.send("Hello World!!!!");
+});
+
+
+app.get("/table1/:item", (req, res) => {
+	var item = req.params.item;
+	res.send(item);
 });
 
 
