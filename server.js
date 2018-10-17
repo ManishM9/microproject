@@ -144,7 +144,7 @@ app.get("/table1/:item", (req, res) => {
 	}
 });
 
-app.get("/orders", (req,res) => {
+app.get("/currorders", (req,res) => {
 	Table1.find({}, (err, docs) => {
 		if(err){
 			console.log(err);
@@ -163,6 +163,33 @@ app.get("/orders", (req,res) => {
 					var table2orders = "\nTable2,Items: ";
 					docs2.forEach(element => {
 						table2orders += "," + element.itemName;
+					});
+					res.send(table1orders+table2orders);
+				}
+			});
+		}
+	});
+});
+
+app.get("pastorders", (req, res) => {
+	Table1checked.find({}, (err, docs) => {
+		if(err){
+			console.log(err);
+			throw err;
+		} else {
+			var table1orders = "Table1,\n";
+			docs.forEach(element => {
+				table1orders += "Orders:" + element.items + ", price:" + element.price +"\n";
+			});
+			// res.send(table1orders);
+			Table2checked.find({}, (err, docs2) => {
+				if(err){
+					console.log(err);
+					throw err;
+				} else {
+					var table2orders = "\nTable2,\n ";
+					docs2.forEach(element => {
+						table2orders += "Orders:" + element.items + ", price:" + element.price +"\n";
 					});
 					res.send(table1orders+table2orders);
 				}
