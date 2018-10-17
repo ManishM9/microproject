@@ -38,6 +38,16 @@ var Table1 = mongoose.model("Table1", table);
 
 var Table2 = mongoose.model("Table2", table);
 
+var tablechecked = new mongoose.Schema({
+	tableno: Number,
+	items: String,
+	price: Number,
+});
+
+var Table1checked = mongoose.model("Table1checked", tablechecked);
+
+var Table2checked = mongoose.model("Table2checked", tablechecked);
+
 
 
 app.get("/", (req, res) => {
@@ -100,7 +110,30 @@ app.get("/table1/:item", (req, res) => {
 						throw err;
 					} else {
 						console.log(info);
-						res.send(response);
+						var items = "";
+						var price = 0;
+						docs.forEach(element => {
+							items += element.itemName + ",";
+							if(element.item == 1){
+								price+=100;
+							} else if(element.item == 2){
+								price+=50;
+							} else if(element.item == 3){
+								price+=35;
+							} else if(element.item == 4){
+								price+=60;
+							}
+						});
+						Table1checked.create({tableno: 1, items: items, price: price}, (err, info) => {
+							if(err){
+								console.log(err);
+								throw err;
+							} else {
+								console.log(info);
+								res.send(response);
+							}
+						});
+						// res.send(response);
 					}
 				});
 				// res.send(response);
