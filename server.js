@@ -47,7 +47,96 @@ app.get("/", (req, res) => {
 
 app.get("/table1/:item", (req, res) => {
 	var item = req.params.item;
-	res.send(item);
+	if(item === 1){
+		Table1.create({ tableno: 1, item: 1, itemName: "Pizza" }, (err, doc) => {
+			if(err){
+				console.log(err);
+				throw err;
+			} else {
+				console.log(doc);
+				res.send("Added Pizza!");
+			}
+		});
+	} else if(item === 2){
+		Table1.create({ tableno: 1, item: 2, itemName: "Burger" }, (err, doc) => {
+			if(err){
+				console.log(err);
+				throw err;
+			} else {
+				console.log(doc);
+				res.send("Added Burger!");
+			}
+		});
+	} else if(item === 3){
+		Table1.create({ tableno: 1, item: 3, itemName: "Soft Drink" }, (err, doc) => {
+			if(err){
+				console.log(err);
+				throw err;
+			} else {
+				console.log(doc);
+				res.send("Added Soft Drink!");
+			}
+		});
+	} else if(item === 4){
+		Table1.create({ tableno: 1, item: 4, itemName: "Desert" }, (err, doc) => {
+			if(err){
+				console.log(err);
+				throw err;
+			} else {
+				console.log(doc);
+				res.send("Added Desert!");
+			}
+		});
+	} else {
+		res.send("INVALID!!!!   ~ SERVER.")
+	}
+});
+
+app.get("/table2/:item", (req, res) => {
+	var item = req.params.item;
+	if(item === 1){
+		Table1.create({ tableno: 2, item: 1, itemName: "Pizza" }, (err, doc) => {
+			if(err){
+				console.log(err);
+				throw err;
+			} else {
+				console.log(doc);
+				res.send("Added Pizza!");
+			}
+		});
+	} else if(item === 2){
+		Table1.create({ tableno: 2, item: 2, itemName: "Burger" }, (err, doc) => {
+			if(err){
+				console.log(err);
+				throw err;
+			} else {
+				console.log(doc);
+				res.send("Added Burger!");
+			}
+		});
+	} else if(item === 3){
+		Table1.create({ tableno: 2, item: 3, itemName: "Soft Drink" }, (err, doc) => {
+			if(err){
+				console.log(err);
+				throw err;
+			} else {
+				console.log(doc);
+				res.send("Added Soft Drink!");
+			}
+		});
+	} else if(item === 4){
+		Table1.create({ tableno: 2, item: 4, itemName: "Desert" }, (err, doc) => {
+			if(err){
+				console.log(err);
+				throw err;
+			} else {
+				console.log(doc);
+				res.send("Added Desert!");
+			}
+		});
+	} else {
+		res.send("INVALID!!!!   ~ SERVER.")
+	}
 });
 
 
