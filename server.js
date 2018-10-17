@@ -130,7 +130,7 @@ app.get("/table1/:item", (req, res) => {
 								throw err;
 							} else {
 								console.log(info);
-								res.send(response);
+								res.send(response+"  Price:"+price);
 							}
 						});
 						// res.send(response);
@@ -226,7 +226,30 @@ app.get("/table2/:item", (req, res) => {
 						throw err;
 					} else {
 						console.log(info);
-						res.send(response);
+						var items = "";
+						var price = 0;
+						docs.forEach(element => {
+							items += element.itemName + ",";
+							if(element.item == 1){
+								price+=100;
+							} else if(element.item == 2){
+								price+=50;
+							} else if(element.item == 3){
+								price+=35;
+							} else if(element.item == 4){
+								price+=60;
+							}
+						});
+						Table2checked.create({tableno: 2, items: items, price: price}, (err, info) => {
+							if(err){
+								console.log(err);
+								throw err;
+							} else {
+								console.log(info);
+								res.send(response+"  Price:"+price);
+							}
+						});
+						// res.send(response);
 					}
 				});
 				// res.send(response);
