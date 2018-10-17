@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
 
 
 app.get("/table1/:item", (req, res) => {
-	var item = req.params.item;
+	var item = Number(req.params.item);
 	if(item === 1){
 		Table1.create({ tableno: 1, item: 1, itemName: "Pizza" }, (err, doc) => {
 			if(err){
@@ -112,7 +112,7 @@ app.get("/table1/:item", (req, res) => {
 });
 
 app.get("/table2/:item", (req, res) => {
-	var item = req.params.item;
+	var item = Number(req.params.item);
 	if(item === 1){
 		Table2.create({ tableno: 2, item: 1, itemName: "Pizza" }, (err, doc) => {
 			if(err){
