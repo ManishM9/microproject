@@ -171,7 +171,7 @@ app.get("/currorders", (req,res) => {
 	});
 });
 
-app.get("pastorders", (req, res) => {
+app.get("/pastorders", (req, res) => {
 	Table1checked.find({}, (err, docs) => {
 		if(err){
 			console.log(err);
