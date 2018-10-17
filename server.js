@@ -111,6 +111,33 @@ app.get("/table1/:item", (req, res) => {
 	}
 });
 
+app.get("/orders", (req,res) => {
+	Table1.find({}, (err, docs) => {
+		if(err){
+			console.log(err);
+			throw err;
+		} else {
+			var table1orders = "Table1,Items:";
+			docs.forEach(element => {
+				table1orders += "," + element.itemName;
+			});
+			// res.send(table1orders);
+			Table2.find({}, (err, docs2) => {
+				if(err){
+					console.log(err);
+					throw err;
+				} else {
+					var table2orders = "\nTable2,Items: ";
+					docs2.forEach(element => {
+						table2orders += "," + element.itemName;
+					});
+					res.send(table1orders+table2orders);
+				}
+			});
+		}
+	});
+});
+
 app.get("/table2/:item", (req, res) => {
 	var item = Number(req.params.item);
 	if(item === 1){
